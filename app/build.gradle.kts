@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.logsine"
+    namespace = "com.example.EarnCash"
     compileSdk = 35
 
     defaultConfig {

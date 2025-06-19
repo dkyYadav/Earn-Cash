@@ -1,4 +1,4 @@
-package com.example.logsine
+package com.example.EarnCash
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.example.logsine.ui.theme
+package com.example.EarnCash.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
