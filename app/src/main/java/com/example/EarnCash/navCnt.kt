@@ -10,23 +10,26 @@ fun NavCnt() {
 
     // like one activity to another activity move
     var navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "Splash" , builder = {
+    NavHost(navController = navController, startDestination = "Login" , builder = {
 
         composable("Splash"){
             Splash(navController)
         }
 
-        composable("login"){
-            login(navController)
+        composable("Login"){
+            Login(navController)
 
         }
 
-        composable("signUp"){
-            Sineup(navController)
+        composable("SignUp"){
+            SignUp(navController)
         }
 
         composable("forgetPass"){
             ForgetPass(navController)
+        }
+        composable("Home"){
+            Home(navController)
         }
     })
 

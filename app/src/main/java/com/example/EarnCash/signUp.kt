@@ -1,5 +1,6 @@
 package com.example.EarnCash
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,9 +31,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,10 +43,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlin.contracts.contract
 
 
 @Composable
-fun Sineup(navController: NavController) {
+fun SignUp(navController: NavController) {
+
+    val context = LocalContext.current
+
+    val auth = Firebase.auth
 
     Box (modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center){
@@ -69,7 +79,7 @@ fun Sineup(navController: NavController) {
                 )
 
 
-                var `name-text` by remember {
+                /*var `name-text` by rememberSaveable {
                     mutableStateOf("")
                 }
 
@@ -89,10 +99,10 @@ fun Sineup(navController: NavController) {
                     }
 
 
-                )
+                )*/
 
                 Spacer(modifier = Modifier.height(10.dp))
-                var email by remember {
+                var email by rememberSaveable {
                     mutableStateOf("")
                 }
                 OutlinedTextField(
@@ -113,7 +123,7 @@ fun Sineup(navController: NavController) {
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
-                var password by remember { mutableStateOf("") }
+                var password by rememberSaveable { mutableStateOf("") }
                 OutlinedTextField(
                     value = password,
                     onValueChange = {
@@ -137,8 +147,8 @@ fun Sineup(navController: NavController) {
                     }
                 )
 
-                Spacer(modifier = Modifier.height(10.dp))
-                var repass by remember {
+               /* Spacer(modifier = Modifier.height(10.dp))
+                var repass by rememberSaveable {
                     mutableStateOf("")
                 }
                 OutlinedTextField(
@@ -163,10 +173,21 @@ fun Sineup(navController: NavController) {
                         )
                     }
                 )
-
+*/
                 Spacer(modifier = Modifier.height(30.dp))
 
-                Button(onClick = {}
+                Button(onClick = {
+                    // firebase to  signup
+
+                    auth.createUserWithEmailAndPassword(email,password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful){
+                                navController.navigate("Home")
+                            }else{
+                                Toast.makeText(context,task.exception?.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                }
                     ,modifier = Modifier
                         .fillMaxWidth().padding(start = 50.dp, end = 50.dp).height(55.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -198,7 +219,7 @@ fun Sineup(navController: NavController) {
                         color = colorResource(id = R.color.pink),
                         fontSize = 15.sp,
                         modifier = Modifier.clickable{
-                            navController.navigate("login")
+                            navController.navigate("Login")
 
                         }
                     )
@@ -212,9 +233,9 @@ fun Sineup(navController: NavController) {
 }
 @Composable
 @Preview(showSystemUi = true)
-fun signpre(){
+fun Signpre(){
 
-    Sineup(navController = rememberNavController())
+    SignUp(navController = rememberNavController())
 }
 
 

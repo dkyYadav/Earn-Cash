@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "204937477997",
+    "project_id": "earn-cash-f9ea8",
+    "storage_bucket": "earn-cash-f9ea8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204937477997:android:bdc8b4a4cc79a08ac6a464",
+        "android_client_info": {
+          "package_name": "com.example.logsine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhcAwOcszAXsZvr4r4A_dPidPlhfYNaVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
